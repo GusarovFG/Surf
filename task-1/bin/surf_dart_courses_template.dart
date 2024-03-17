@@ -179,6 +179,11 @@ void main() {
 
   print('Средний возраст техники равен $meanAgeOfAllMachines');
 
+    //Сортировка техники по возрасту
+  final sortedMachinesOfAllTime = machinesOfAllTime.toList();
+  sortedMachinesOfAllTime.sort((machine, oldMachime) => machine.releaseDate.year.compareTo(oldMachime.releaseDate.year));
+  print(sortedMachinesOfAllTime.map((e) => e.releaseDate));
 
+  
 
 }
