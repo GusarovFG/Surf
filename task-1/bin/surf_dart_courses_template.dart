@@ -166,24 +166,35 @@ void main() {
   final terrytoriesOfAllTime =
       ageOfMachineryBefore2010 + ageOfMachineryBefore2010;
 
-  //Получение всей техники 
+  //Получение всей техники
   var machinesOfAllTime = terrytoriesOfAllTime
       .map((e) => e.machineries)
-      .expand((machine) => machine).toSet();
+      .expand((machine) => machine)
+      .toSet();
 
   //Подсчет среднего возраста техники
   final meanAgeOfAllMachines = (currentDate -
-      machinesOfAllTime.fold(
-              0, (totalAge, element) => totalAge += element.releaseDate.year) /
-          machinesOfAllTime.length).floor();
+          machinesOfAllTime.fold(0,
+                  (totalAge, element) => totalAge += element.releaseDate.year) /
+              machinesOfAllTime.length)
+      .round();
 
   print('Средний возраст техники равен $meanAgeOfAllMachines');
 
-    //Сортировка техники по возрасту
+  //Сортировка техники по возрасту
   final sortedMachinesOfAllTime = machinesOfAllTime.toList();
-  sortedMachinesOfAllTime.sort((machine, oldMachime) => machine.releaseDate.year.compareTo(oldMachime.releaseDate.year));
-  
-  //Подсчет среднего возраста половины старшей техники
-  final meanAgeOfOldestMachines = sortedMachinesOfAllTime.getRange(0, (sortedMachinesOfAllTime.length / 2).floor());
-  print(meanAgeOfOldestMachines);
+  sortedMachinesOfAllTime.sort((machine, oldMachime) =>
+      machine.releaseDate.year.compareTo(oldMachime.releaseDate.year));
+
+  //Получение половины массива техники
+  final halfOfOldestMachines = sortedMachinesOfAllTime
+      .getRange(0, (sortedMachinesOfAllTime.length / 2).floor())
+      .toList();
+
+  //Получение среднегов возраста половины техники, отсортированной по возрастанию возраста
+  final meanAgeOfOldestMachines = currentDate - (halfOfOldestMachines.fold(
+          0, (totalAge, element) => totalAge += element.releaseDate.year) /
+      halfOfOldestMachines.length).round();
+
+      print('Средний возраст половины техники, отсортированной по возрастанию возраста $meanAgeOfOldestMachines');
 }
