@@ -182,8 +182,8 @@ void main() {
     //Сортировка техники по возрасту
   final sortedMachinesOfAllTime = machinesOfAllTime.toList();
   sortedMachinesOfAllTime.sort((machine, oldMachime) => machine.releaseDate.year.compareTo(oldMachime.releaseDate.year));
-  print(sortedMachinesOfAllTime.map((e) => e.releaseDate));
-
   
-
+  //Подсчет среднего возраста половины старшей техники
+  final meanAgeOfOldestMachines = sortedMachinesOfAllTime.getRange(0, (sortedMachinesOfAllTime.length / 2).floor());
+  print(meanAgeOfOldestMachines);
 }
