@@ -160,8 +160,6 @@ void main() {
             .toList()
     };
 
-    print(subCategory);
-
     Map<String, Map<String, List<String>>> categories = {};
     var category = filteredProducts.map((e) => e.categoryName).toList().toSet();
     for (var catt in category) {
