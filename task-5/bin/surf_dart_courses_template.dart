@@ -1,7 +1,4 @@
-import 'dart:core';
-
 void main() {
-
   final DateTime currentDate = DateTime(2022, 12, 20);
 
   final List<RawProductItem> ListOfProduct = [
@@ -138,33 +135,92 @@ void main() {
       expirationDate: DateTime(2022, 12, 25),
       qty: 5,
     )
-];
+  ];
 
-  final Map<String, Map<String, List<String>>> incomingData = {
-  'Растительная пища': {
-    'Фрукты': ['Персик', 'Груша'],
-    'Овощи': ['Морковь'],
-    'Крупы': ['Гречка'],
-  },
-  'Молочные продукты': {
-    'Напитки': ['Молоко', 'Кефир'],
-    'Сыры': ['Гауда', 'Маасдам'],
-  },
-  'Мясо': {
-    'Птица': ['Курица'],
-    'Не птица': ['Свинина'],
+  final filter = FilterByExpired();
+
+  List<RawProductItem> getFiltredListOfProducts(
+      List<RawProductItem> products, Filter filter, DateTime date) {
+    final filteredRawProducts =
+        filter.apply(rawProducts: products, currentDate: date);
+
+    return filteredRawProducts.toList();
   }
-};
 
+  final filteredProducts =
+      getFiltredListOfProducts(ListOfProduct, filter, currentDate);
 
+  Map<String, Map<String, List<String>>> getCategoriesOfFilteredProducts(
+      List<RawProductItem> products) {
+    Map<String, List<String>> subCategory = {
+      for (var product in products)
+        product.subcategoryName: products
+            .where((e) => e.subcategoryName == product.subcategoryName)
+            .map((e) => e.name)
+            .toList()
+    };
+
+    print(subCategory);
+
+    Map<String, Map<String, List<String>>> categories = {};
+    var category = filteredProducts.map((e) => e.categoryName).toList().toSet();
+    for (var catt in category) {
+      Map<String, List<String>> mapOfSubCategories = {};
+      List<String> listOfNames = [];
+      for (var sub in filteredProducts
+          .where((element) => element.categoryName == catt)
+          .map((e) => e.subcategoryName)) {
+        List<String> listOfSubCatNames = filteredProducts
+            .where((element) => element.subcategoryName == sub)
+            .map((e) => e.name)
+            .toList();
+        listOfNames = listOfSubCatNames;
+        mapOfSubCategories.addAll({sub: listOfNames});
+        categories.addAll({catt: mapOfSubCategories});
+      }
+    }
+
+    return categories;
+  }
+
+  print(getCategoriesOfFilteredProducts(filteredProducts));
 }
 
 class RawProductItem {
   String name;
-     String categoryName;
-     String subcategoryName;
-     DateTime expirationDate;
-     int qty;
+  String categoryName;
+  String subcategoryName;
+  DateTime expirationDate;
+  int qty;
 
-     RawProductItem({required this.name, required this.categoryName, required this.subcategoryName, required this.expirationDate, required this.qty});
+  RawProductItem(
+      {required this.name,
+      required this.categoryName,
+      required this.subcategoryName,
+      required this.expirationDate,
+      required this.qty});
+
+  @override
+  String toString() {
+    return '$name, $categoryName, $subcategoryName, $expirationDate, $qty';
+  }
+}
+
+abstract class Filter {
+  List<RawProductItem> apply(
+      {required List<RawProductItem> rawProducts,
+      required DateTime currentDate});
+}
+
+class FilterByExpired implements Filter {
+  @override
+  List<RawProductItem> apply(
+      {required List<RawProductItem> rawProducts,
+      required DateTime currentDate}) {
+    return rawProducts
+        .where((element) => element.qty != 0)
+        .toList()
+        .where((element) => !element.expirationDate.isBefore(currentDate))
+        .toList();
+  }
 }
