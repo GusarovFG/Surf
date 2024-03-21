@@ -47,15 +47,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _countOfTapRemove = 0;
+  int _countOfTapAdd = 0;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+      _countOfTapAdd++;
     });
   }
 
   void _decreaseCounter() {
     setState(() {
+      _countOfTapRemove++;
       if (_counter > 0) {
         _counter--;
       } else {
@@ -88,6 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  '$_countOfTapRemove',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
                 FloatingActionButton(
                   onPressed: _decreaseCounter,
                   tooltip: 'Increment',
@@ -100,6 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: _incrementCounter,
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '$_countOfTapAdd',
+                  style: const TextStyle(fontSize: 20),
                 ),
               ],
             ),
