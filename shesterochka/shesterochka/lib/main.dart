@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
+import 'package:shesterochka/view/MainHeader.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           ),
           leading: BackButton(color: _appColors.buttonsColor),
         ),
+        body: MainHeader(),
       ),
     );
   }
