@@ -50,6 +50,10 @@ flutter:
   # like this:
   assets:
     - assets/sortButton.svg
+    - assets/catalogIcon.png
+    - assets/search.png
+    - assets/person_outline.png
+    - assets/local_mall.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
