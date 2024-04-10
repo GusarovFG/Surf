@@ -15,7 +15,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
           text: "Чек № 56",
-          style: TextStyle(fontSize: 18, color: _appColors.textColor),
+          style: TextStyle(fontSize: 18, color: _appColors.textColor, fontWeight: FontWeight.bold),
           children: <TextSpan>[
             TextSpan(
               text: '\n24.02.23 в 12:23',
