@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shesterochka/AppColors/AppColors.dart';
 import 'package:shesterochka/model/models.dart';
 import 'package:decimal/decimal.dart';
 
@@ -27,6 +28,24 @@ class ProductItemState extends State<ProductItem> {
                 height: 68,
                 width: 68,
                 fit: BoxFit.fill,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return SizedBox(
+                    height: 68,
+                    width: 68,
+                    child: CircularProgressIndicator(
+                      strokeAlign: BorderSide.strokeAlignInside,
+                      color: AppColors().buttonsColor,
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
               ),
             ),
             Expanded(
@@ -64,8 +83,10 @@ class ProductItemState extends State<ProductItem> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.product.amount.runtimeType is Amount ?
-                                '${widget.product.amount.value} шт' : '${widget.product.amount.value} гр',
+                              Text(
+                                widget.product.amount.runtimeType is Amount
+                                    ? '${widget.product.amount.value} шт'
+                                    : '${widget.product.amount.value} гр',
                                 style: const TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w400),
                               ),

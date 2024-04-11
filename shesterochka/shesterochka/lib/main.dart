@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
+import 'package:shesterochka/model/Models.dart';
+import 'package:shesterochka/model/Products.dart';
 import 'package:shesterochka/view/MainAppBar.dart';
 import 'package:shesterochka/view/MainButtomNavigationBar.dart';
 import 'package:shesterochka/view/MainHeader.dart';
 import 'package:shesterochka/view/ProductListView/ProductListView.dart';
+import 'package:shesterochka/view/ProductListView/SummaryWidget.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
         body: Column(
             children: [
               MainHeader(),
-              ProductListView()
+              ProductListView(),
             ],
           ),
         

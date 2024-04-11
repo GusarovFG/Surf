@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
+import 'package:shesterochka/model/Models.dart';
 import 'package:shesterochka/model/Products.dart';
 import 'package:shesterochka/view/ProductListView/ProductItem.dart';
+import 'package:shesterochka/view/ProductListView/SummaryWidget.dart';
 
 class ProductListView extends StatefulWidget {
   ProductListView({super.key});
@@ -19,11 +21,14 @@ class ProductListViewState extends State<ProductListView> {
       child: ListView.builder(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 24),
         itemBuilder: (BuildContext context, int index) {
+          
+         
           final product = _prorducts[index];
+          
+          final previousProduct = index > 0 ? _prorducts[index - 1] : _prorducts[index];
           final productItem = ProductItem(product: product);
-    
-          if (product != _prorducts.last &&
-              _prorducts[index + 1].category == product.category) {
+
+          if (product.category != previousProduct.category || product == _prorducts.first) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -35,9 +40,7 @@ class ProductListViewState extends State<ProductListView> {
                 productItem
               ],
             );
-          } else if ((product != _prorducts.last &&
-                  _prorducts[index + 1].category != product.category) ||
-              product == _prorducts.last) {
+          } else if (product == _prorducts.last) {
             return Column(
               children: [
                 productItem,
@@ -46,7 +49,11 @@ class ProductListViewState extends State<ProductListView> {
                 ),
                 const SizedBox(
                   height: 20,
-                )
+                ),
+                SummaryWidget(),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
             );
           } else {
