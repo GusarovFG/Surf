@@ -2,36 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
 import 'package:shesterochka/model/Models.dart';
 import 'package:shesterochka/model/Products.dart';
-import 'package:shesterochka/view/MainAppBar.dart';
-import 'package:shesterochka/view/MainButtomNavigationBar.dart';
-import 'package:shesterochka/view/MainHeader.dart';
+import 'package:shesterochka/view/ChequeScreen/ChequeScreen.dart';
+import 'package:shesterochka/view/ChequeScreen/MainAppBar.dart';
+import 'package:shesterochka/view/ChequeScreen/MainButtomNavigationBar.dart';
+import 'package:shesterochka/view/ChequeScreen/MainHeader.dart';
 import 'package:shesterochka/view/ProductListView/ProductListView.dart';
 import 'package:shesterochka/view/ProductListView/SummaryWidget.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(ChequeScreen());
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'Sora'),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        extendBody: false,
-        backgroundColor: AppColors().backgroundColor,
-        appBar: MainAppBar(),
-        body: Column(
-            children: [
-              MainHeader(),
-              ProductListView(),
-            ],
-          ),
-        
-        bottomNavigationBar: MainButtomNavigationBar(),
-      ),
-    );
-  }
-}

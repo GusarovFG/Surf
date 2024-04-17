@@ -56,6 +56,7 @@ flutter:
     - assets/search.png
     - assets/person_outline.png
     - assets/local_mall.png
+    - assets/ic-close.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
