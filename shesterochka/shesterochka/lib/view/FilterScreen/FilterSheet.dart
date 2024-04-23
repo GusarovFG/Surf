@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
 import 'package:shesterochka/model/ProductsFilter.dart';
 import 'package:shesterochka/view/FilterScreen/FilterItem.dart';
 import 'package:shesterochka/view/ProductListView/ProductListView.dart';
 
+// ignore: must_be_immutable
 class FliterSheet extends StatefulWidget {
   FilterType filter;
 

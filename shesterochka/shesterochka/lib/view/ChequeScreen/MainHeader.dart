@@ -4,15 +4,21 @@ import 'package:shesterochka/AppColors/AppColors.dart';
 import 'package:shesterochka/model/ProductsFilter.dart';
 import 'package:shesterochka/view/FilterScreen/FilterItem.dart';
 import 'package:shesterochka/view/FilterScreen/FilterSheet.dart';
-import 'package:shesterochka/view/ProductListView/ProductListView.dart';
 
-class MainHeader extends StatelessWidget {
+class MainHeader extends StatefulWidget {
   final BuildContext mainContext;
 
-  final _colors = AppColors();
-  var filter = FilterType.def;
 
   MainHeader({super.key, required this.mainContext});
+
+  @override
+  State<MainHeader> createState() => _MainHeaderState();
+}
+
+class _MainHeaderState extends State<MainHeader> {
+  final _colors = AppColors();
+
+  var filter = FilterType.def;
 
   @override
   Widget build(BuildContext context) {

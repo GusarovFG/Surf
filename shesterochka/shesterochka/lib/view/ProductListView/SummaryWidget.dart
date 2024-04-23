@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
-import 'package:shesterochka/model/Models.dart';
 import 'package:shesterochka/model/Products.dart';
 
 class SummaryWidget extends StatelessWidget {

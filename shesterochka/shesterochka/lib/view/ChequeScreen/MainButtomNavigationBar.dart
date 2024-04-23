@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
 
+// ignore: must_be_immutable
 class MainButtomNavigationBar extends StatefulWidget {
   MainButtomNavigationBar({super.key});
 

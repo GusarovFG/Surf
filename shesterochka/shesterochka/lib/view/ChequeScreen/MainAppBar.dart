@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
-import 'package:shesterochka/view/ChequeScreen/MainHeader.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final _appColors = AppColors();
