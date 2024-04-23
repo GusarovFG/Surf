@@ -43,6 +43,8 @@ class _MainHeaderState extends State<MainHeader> {
               ),
               onTap: () {
                 showModalBottomSheet(
+                  isScrollControlled: true,
+                  useSafeArea: true,
                   clipBehavior: Clip.hardEdge,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
