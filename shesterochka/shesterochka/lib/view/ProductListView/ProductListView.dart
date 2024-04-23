@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
-import 'package:shesterochka/model/ProductsFilter.dart';
+import 'package:shesterochka/model/FilterOfProduct/ProductsFilter.dart';
 import 'package:shesterochka/view/ProductListView/ProductItem.dart';
 import 'package:shesterochka/view/ProductListView/SummaryWidget.dart';
 

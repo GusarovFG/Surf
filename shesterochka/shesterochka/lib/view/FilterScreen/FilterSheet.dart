@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
-import 'package:shesterochka/model/ProductsFilter.dart';
-import 'package:shesterochka/view/FilterScreen/FilterItem.dart';
+import 'package:shesterochka/model/FilterOfProduct/ProductsFilter.dart';
+import 'package:shesterochka/model/FilterOfProduct/FilterItem.dart';
 import 'package:shesterochka/view/ProductListView/ProductListView.dart';
 
 // ignore: must_be_immutable
@@ -101,6 +101,78 @@ class FliterSheetState extends State<FliterSheet> {
                     ],
                   ),
                   const Divider(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Text(
+                          'По имени',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12),
+                        ),
+                      ),
+                      RadioListTile(
+                        title: const Text('По имени от А до Я'),
+                        activeColor: widget._colors.buttonsColor,
+                        value: FilterType.byNameAZ,
+                        groupValue: widget.filter,
+                        onChanged: (value) {
+                          setState(() {
+                            widget.filter = value!;
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: const Text('По имени от Я до А'),
+                        activeColor: widget._colors.buttonsColor,
+                        value: FilterType.byNameZA,
+                        groupValue: widget.filter,
+                        onChanged: (value) {
+                          setState(() {
+                            widget.filter = value!;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Text(
+                          'По типу',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12),
+                        ),
+                      ),
+                      RadioListTile(
+                        title: const Text('По типу от А до Я'),
+                        activeColor: widget._colors.buttonsColor,
+                        value: FilterType.byTypeAZ,
+                        groupValue: widget.filter,
+                        onChanged: (value) {
+                          setState(() {
+                            widget.filter = value!;
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: const Text('По типу от Я до А'),
+                        activeColor: widget._colors.buttonsColor,
+                        value: FilterType.byTypeZA,
+                        groupValue: widget.filter,
+                        onChanged: (value) {
+                          setState(() {
+                            widget.filter = value!;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(),
                   SizedBox(
                     width: MediaQuery.of(context).size.width - 40,
                     height: 48,
@@ -123,6 +195,14 @@ class FliterSheetState extends State<FliterSheet> {
                             ProductsFilter().AscendingFilterByPrice();
                           case FilterType.descendingFilter:
                             ProductsFilter().DescendingFilterByPrice();
+                          case FilterType.byNameAZ:
+                            ProductsFilter().AZFilterByName();
+                          case FilterType.byNameZA:
+                            ProductsFilter().ZAFilterByName();
+                          case FilterType.byTypeAZ:
+                            ProductsFilter().AZFilterByType();
+                          case FilterType.byTypeZA:
+                            ProductsFilter().ZAFilterByType();
                         }
                         listKey.currentState?.loaded();
                         listKey.currentState?.setState(() {});

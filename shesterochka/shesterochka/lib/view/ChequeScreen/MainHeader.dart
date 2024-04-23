@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shesterochka/AppColors/AppColors.dart';
-import 'package:shesterochka/model/ProductsFilter.dart';
-import 'package:shesterochka/view/FilterScreen/FilterItem.dart';
+import 'package:shesterochka/model/FilterOfProduct/ProductsFilter.dart';
+import 'package:shesterochka/model/FilterOfProduct/FilterItem.dart';
 import 'package:shesterochka/view/FilterScreen/FilterSheet.dart';
 
 class MainHeader extends StatefulWidget {
@@ -43,7 +43,7 @@ class _MainHeaderState extends State<MainHeader> {
               ),
               onTap: () {
                 showModalBottomSheet(
-                  clipBehavior: Clip.antiAlias,
+                  clipBehavior: Clip.hardEdge,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
