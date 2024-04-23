@@ -22,7 +22,6 @@ class ChequeScreen extends StatelessWidget {
         appBar: MainAppBar(),
         body: Column(
           children: [
-            
             MainHeader(
               mainContext: context,
             ),
@@ -33,6 +32,4 @@ class ChequeScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }

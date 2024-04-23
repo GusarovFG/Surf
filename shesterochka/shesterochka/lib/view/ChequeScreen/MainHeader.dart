@@ -9,7 +9,7 @@ class MainHeader extends StatefulWidget {
   final BuildContext mainContext;
 
 
-  MainHeader({super.key, required this.mainContext});
+  const MainHeader({super.key, required this.mainContext});
 
   @override
   State<MainHeader> createState() => _MainHeaderState();
@@ -23,7 +23,8 @@ class _MainHeaderState extends State<MainHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 32,
+      padding: const EdgeInsets.only(top: 24, bottom: 16),
+
       color: _colors.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
@@ -35,7 +36,7 @@ class _MainHeaderState extends State<MainHeader> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             GestureDetector(
-              child: Container(
+              child: SizedBox(
                 width: 32,
                 height: 32,
                 child: SvgPicture.asset('assets/sortButton.svg'),
